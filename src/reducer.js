@@ -1,19 +1,21 @@
-const initialState = {};
-function reducer(state = initialState, action) {
+//reducer.js
+const initialState = {
+  count: 0,
+};
+
+export function reducer(state = initialState, action) {
   switch (action.type) {
     case "plus":
       return {
         ...state,
-        age: state.age + 1,
+        count: state.count + 1,
       };
     case "subtract":
       return {
         ...state,
-        age: state.age - 1,
+        count: state.count - 1,
       };
     default:
       return initialState;
   }
 }
-
-export default reducer;
