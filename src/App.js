@@ -15,6 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCount: () => {
+      console.log(dispatch);
+      console.log(addCountAction);
       dispatch(addCountAction);
     },
   };

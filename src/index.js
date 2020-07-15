@@ -12,7 +12,9 @@ function logger(store) {
   return (action) => {
     console.log("logger1");
     let result = next(action);
-    return result;
+    console.log(result);
+
+    // return result;
   };
 }
 
@@ -29,6 +31,7 @@ function logger2(store) {
   return (action) => {
     console.log("logger2");
     let result = next(action);
+    // console.log(result);
     return result;
   };
 }
@@ -36,11 +39,15 @@ function logger2(store) {
 function applyMiddleware(store, middlewares) {
   middlewares = [...middlewares];
   middlewares.reverse();
-  middlewares.forEach((middleware) => (store.dispatch = middleware(store)));
+  middlewares.forEach((middleware) => {
+    const result = middleware(store);
+    console.log(result);
+    store.dispatch = result;
+  });
 }
 
 applyMiddleware(store, [logger, thunk, logger2]);
-
+console.log(store.dispatch);
 ReactDOM.render(
   <Provider store={store}>
     <App />
